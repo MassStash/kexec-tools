@@ -178,6 +178,12 @@ static int m8_add_extra_regs(void *dtb_buf)
         fdt_appendprop(dtb_buf, off, "reg", &reg, sizeof(reg));
 
     fclose(f);
+
+    if(dtb_add_htc_m8_specific(dtb_buf) < 0)
+    {
+        fprintf(stderr, "DTB: Failed to add m8 specifics!\n");
+        return -1;
+    }
     return 0;
 }
 //htc m8
